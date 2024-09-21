@@ -1,0 +1,12 @@
+Complexity: How badly does an algorithm react to an increasing amount of data? (not runtime)
+
+Constant Family: Algorithms that has constant runtime regardless of the datasize.
+    Represented by O(1)   (O means order)
+
+Linear Family: Algorithms that rise linearly proportional to the data size. 
+    Represented by O(n) (this is not math, the big O does not deal with constants; 
+        Every linear algorithm will be represented by O(n))
+
+Quadratic Family: Algorithms that rise quadratically proportional to the data size.
+    represented by O(n^2)
+
