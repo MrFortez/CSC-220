@@ -1,37 +1,33 @@
 /* ***************************************************
  * Brandon Fortes
- * September 23, 2024
- * ListTemplate.java
+ * October 2, 2024
+ * List.java
  *
- * <a simple, short program/class description>
+ * A class that represents an int array whose size is modifiable. 
+ *  Provides several methods for interacting with the array.
  *************************************************** */
 
 // the EasyList class
-
-// (java ListTest.java | diff ListTest.out -)
-
-import java.nio.file.FileAlreadyExistsException;
-
-class List
+public class List
 {
 	public static final int MAX_SIZE = 50;
 
 	private int end;	// the index of the last valid item in the list
 	private int curr;	// the index of the current item in the list
-	private char[] list;	// the list
+	private int[] list;	// the list
 
 	// constructor
-	// remember that an empty list has a "size" of -1 and its "position" is at -1
+	// remember that an empty list has a "size" of 0 and its "position" is at -1
 	public List() {
-		curr = end = -1;
-		list = new char[MAX_SIZE];
+		end = curr = -1;
+		list = new int[MAX_SIZE];
 	}
 
 	// copy constructor
 	// clones the list l and sets the last element as the current
 	public List(List l) {
-		curr = end = -1;
-		list = new char[MAX_SIZE];
+		end = curr = -1;
+		list = new int[MAX_SIZE];
 
 		for (int i = 0; i < l.GetSize(); i++) {
 			InsertAfter(l.list[i]);
@@ -70,7 +66,7 @@ class List
 	public void Prev() {
 		if (!IsEmpty() && curr > 0) {
 			curr--;
-		}
+		} 
 	}
 
 	// navigates to the next element
@@ -79,21 +75,23 @@ class List
 	public void Next() {
 		if (!IsEmpty() && curr < end) {
 			curr++;
-		}
+		} 
 	}
 
 	// returns the location of the current element (or -1)
 	public int GetPos() {
-		return curr;
+		if (!IsEmpty()) {
+			return curr;
+		}
+		return -1;
 	}
 
 	// returns the value of the current element (or -1)
-	public char GetValue() {
+	public int GetValue() {
 		if (!IsEmpty()) {
 			return list[curr];
 		}
-		return ' ';
-
+		return -1;
 	}
 
 	// returns the size of the list
@@ -105,7 +103,7 @@ class List
 	// inserts an item before the current element
 	// the new element becomes the current
 	// this should not be possible for a full list
-	public void InsertBefore(char data) {
+	public void InsertBefore(int data) {
 		if (!IsFull()) {
 			if (IsEmpty()) {
 				list[0] = data;
@@ -120,13 +118,12 @@ class List
 				end++;
 			}
 		}
-
 	}
 
 	// inserts an item after the current element
 	// the new element becomes the current
 	// this should not be possible for a full list
-	public void InsertAfter(char data) {
+	public void InsertAfter(int data) {
 		if (!IsFull()) {
 			if (IsEmpty()) {
 				InsertBefore(data);
@@ -139,9 +136,7 @@ class List
 			else {
 				Next();
 				InsertBefore(data);
-			}
-				
-				
+			}	
 		}
 	}
 
@@ -163,7 +158,7 @@ class List
 
 	// replaces the value of the current element with the specified value
 	// this should not be possible for an empty list
-	public void Replace(char data) {
+	public void Replace(int data) {
 		if (!IsEmpty()) {
 			list[curr] = data;
 		}
@@ -208,15 +203,13 @@ class List
 	// returns a string representation of the entire list (e.g., 1 2 3 4 5)
 	// the string "NULL" should be returned for an empty list
 	public String toString() {
-		if (IsEmpty()) { 
-			return "NULL";	
+		if (IsEmpty()) {
+			return "NULL";
 		}
-		else {
-			String result = "";
-			for (int i = 0; i <= end; i++) {
-				result += list[i] + " ";
-			}
-			return result;
+		String result = "";
+		for (int i = 0; i <= end; i++) {
+			result += list[i] + " ";
 		}
+		return result;
 	}
 }
