@@ -1,0 +1,6 @@
+When deleting nodes from a tree, the action depends on where the node is.
+If its a leaf, just remove the link from the parent.
+if it is a parent with one child, the parent becomes the child.
+it it has two children, you go down the right branch once, then go left as
+    many times as you can. The node you reach once you cant go left anymore
+    will replace the deleted node

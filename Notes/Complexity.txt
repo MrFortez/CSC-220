@@ -10,3 +10,12 @@ Linear Family: Algorithms that rise linearly proportional to the data size.
 Quadratic Family: Algorithms that rise quadratically proportional to the data size.
     represented by O(n^2)
 
+
+
+Complexity
+Array Theory
+searching and sorting
+2D arrays
+Linked Lists
+Stacks and Queues
+Infix to post fix and post fix evaluation

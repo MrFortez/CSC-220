@@ -1,0 +1,20 @@
+Quick Sort is based on the premise of pivot values.
+Basically, you chose some number to be your pivot, then look at
+ the rest of the numbers in the list. If a number is smaller
+ than the pivot value, it goes to the left of your pivot, otherwise
+ it goes on the right. Once this pass is done, this pivot number will
+ by definition be sorted and will never have to be moved again, and each
+ side of your pivot becomes a new list. Then chose a new pivot in each of
+ the new lists and repeat.
+
+Assuming you choose the first number in the list to be your pivot, you first
+ find the first number starting from the left of the list that is bigger than
+ your pivot and mark it with "L", and find the first number starting from the
+ right of the list that is smaller than your pivot, mark it with "R". Swap the numbers
+ in L and R. Next, continue right from L until you find another value bigger than the pivot,
+ and continue left from R until your find another value smaller than the pivot. Swap them.
+ keep doing this until L and R meet. Once they meet, swap the pivot with the number in
+ the position 1 before this meeting point. The pivot is now sorted, and will 
+ never need to be moved again. You now have 2 seperate lists, one on either side 
+ of the pivot. Now, you can perform this algorithm in each of those 2 lists. You can
+ repeat this sub dividing any number of times.

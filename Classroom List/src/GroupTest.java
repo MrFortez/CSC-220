@@ -9,10 +9,10 @@ class GroupTest {
         // Generate the array of Students.
         Student[] students = generateStudentList();
 
-         // Prints out each student's name, list number, and preference rankings. Used for testing purposes.
-         for (Student student : students) {
-            System.out.println(student);
-        }
+        // Prints out each student's name, list number, and preference rankings. Used for testing purposes.
+        //  for (Student student : students) {
+        //     System.out.println(student);
+        // }
         
         // Print out the preference scores, used for testing.
         // for (Student student : students) {
@@ -29,23 +29,9 @@ class GroupTest {
 
         // Generate random groups
         Group[] groups = generateRandomGroups(students);
-       
-        for (Group group : groups) {
-            System.out.println(group);
-        }
 
-        for (int i = 0; i < 100000; i++) {
-            randomSwap(groups);
-        }
-
-        System.out.println();
-
-        for (Group group : groups) {
-            System.out.println(group);
-        }
-
-
-
+        // Optimize the groups
+        hillClimbingAlgorithm(groups, students.length);
     }
 
     // Accesses the csv file and creates an array of students with the data from that file.
@@ -60,11 +46,10 @@ class GroupTest {
 
             Student[] students = new Student[20];
 
-            // Burn the first line of the csv because its just names and I dont care about
-            // it.
+            // Burn the first line of the csv because its just names and I dont care about it.
             br.readLine();
 
-            // Read and attached the first student's line (aka belle walters) to a String.
+            // Read and attached the first student's line (aka Belle Walters in the example csv) to a String.
             line = br.readLine();
 
             // Loop through the rest of the csv file until the read line is null.
@@ -108,6 +93,7 @@ class GroupTest {
 
     // Sets the group size via the user's input.
     public static void userInputedGroupSize(Student[] students) {
+
         // Create a Scanner for user input.
         Scanner inputScanner = new Scanner(System.in);
 
@@ -144,7 +130,12 @@ class GroupTest {
 
             
         }
+
+        // Set the target group size. Note that this is not necessarily the number of students in each group. It is
+        // instead the capacity of each group.
         Group.setTargetGroupSize(Integer.parseInt(input));
+
+        // Close the scanner to prevent memory leaks.
         inputScanner.close();
 
     }
@@ -152,6 +143,8 @@ class GroupTest {
     // Generates N/s groups (where N is the number of students and s is the size of each group, with the remainder being its own group)
     // Each group will consist of a random assortment of students from the given list.
     public static Group[] generateRandomGroups(Student[] students) {
+
+        // Randomize the order of students.
         Student[] randomStudents = shuffle(students);
 
         // Declare and Initialize an array of ceil(N/s) groups. 
@@ -177,11 +170,49 @@ class GroupTest {
                 // Add the student into the group.
                 groups[i].populateGroup(randomStudents[index]);
             }
-
-
         }
 
         return groups;
+    }
+
+    // Employs a hill climbing algorithm to optimize the groups. Essentially,
+    // it randomly swaps two students, and if that swap improves the overall score,
+    // the swap is kept, otherwise the swap is undone. This is repeated an arbitrary 
+    // number of times relative to the number of students in the class to create 
+    // a set of groups with high compatability scores.
+    public static void hillClimbingAlgorithm(Group[] groups, int numOfStudents) {
+
+        // create a variable to store the total group score (aka all of the group scores added together).
+        double totalGroupScore = 0;
+       
+        // print out the starting group scores after the initial randomization, and add up their group scores.
+        for (Group group : groups) {
+            System.out.println(group);
+            totalGroupScore += group.getGroupScore();
+        }
+
+        // print out the total group score prior to hill climbing
+        System.out.println("Average Group Score: " + (totalGroupScore / (double) groups.length));
+
+        // Perform numOfStudents * 1000 random swaps (so with the example csv file with 20 students, it'll do 20,000 random swaps)
+        for (int i = 0; i < (numOfStudents * 1000); i++) {
+            randomSwap(groups);
+        }
+
+        // New line for formating.
+        System.out.println();
+
+        // Reset the total group score.
+        totalGroupScore = 0;
+
+        // Print out each group after the hill climbing, and add up their group scores.
+        for (Group group : groups) {
+            System.out.println(group);
+            totalGroupScore += group.getGroupScore();
+        }
+
+        // Print out the final average group score.
+        System.out.println("Average Group Score: " + (totalGroupScore / (double) groups.length));
     }
 
     // randomly chooses a student from two different groups. If swapping the 

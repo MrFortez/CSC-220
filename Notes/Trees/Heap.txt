@@ -1,0 +1,19 @@
+A Max Heap is a type of binary tree where the root is always larger than both
+    of its children.
+
+You insert top to bottom, left to right.
+
+If a node is larger than its parent, they swap places.
+
+As a result of this insertion style, every Max Heap with the same number of nodes
+    will look the same. So, all Heaps with 5 nodes will have those nodes in the 
+    same position.
+
+When converted into an array, the left child is located at 2n, where n is the index of the parent.
+    The right child is located at 2n + 1.
+
+In order to delete the root, first swap the values of the root and the most recent leaf.
+    Next, delete the most recent heap (thus deleting the largest value because it was just swapped)
+    Finally, you will need to do swaps to get the new root in the right place. Swap the Root with 
+    the larger of its two children until the whole tree is a valid heap.
+

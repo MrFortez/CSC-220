@@ -1,0 +1,7 @@
+Three rules for converting general trees to binary trees.
+1: Root stays the same
+2: left most child => left child
+3: Remaining children are cascaded as right children
+    of the left child
+
+The resulting tree will be gross but is by definition a binary tree

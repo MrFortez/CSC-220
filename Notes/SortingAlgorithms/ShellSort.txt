@@ -1,0 +1,19 @@
+Shell sort essentially sorts only portions of the list at a time.
+You do several sets of passes of either bubble sort or insertion sort.
+In the first pass, you have some variable k, and you basically just sort 
+every index divisble by k as if it were its own list. Then you do every element
+divisible by k + 1, then k + 2... until you reach k + (k-1).
+At this point, you subtract k by some amount (up to the user) and do the same 
+thing again.
+Keep doing these sets of passes until you reach k = 1, at which point you can do
+insertion sort. The purpose of this algorithm is to place items in their approximately 
+correct posistions to take advantage of insertion sorts high optimization capabilities,
+
+for example, if you have a list of 10 items and your first k = 3, Then you sort
+items 0, 3, 6, 9; then 1, 4, 7; then 2, 5, 8; 
+Then you reduce k by 1, which would make it 2. Then you sort 
+items 0, 2, 4, 6, 8; then 1, 3, 5, 7, 9.
+
+Finally, reduce k by 1 to reach k = 1 and just do insertion sort to finish it off.
+
+k can be set to any arbitrary value and can be reduced by some arbitrary value every cycle.

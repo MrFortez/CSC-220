@@ -1,0 +1,15 @@
+Nodes can have either 1 or 2 pieces of information.
+If a node has 1 data, it will have 2 children. The left will be smaller and the right will be bigger.
+If a node has 2 data, it will have 3 children. The left will be smaller, the middle will be inbetween 
+    the 2 data in the parent (i.e. 8 is between 5 and 10), and the right will be bigger.
+
+A child can have 2 data as well, but both of its data has to fit the criteria of the location.
+So if the root is 5-10, the left child can be 3-4, but it cant be 3-71.
+
+Creating a 2-3 tree from a set of data:
+After each insertion you should have a valid 2-3 tree.
+all insertions happen at leaves.
+If theres no space in a node:
+    The node splits
+    Extreme values become Nodes
+    The middle value gets promoted
