@@ -1,0 +1,5 @@
+A way of storing data where you can access data using a key. In a hash
+    map, you dont need to know the index of the item you want to access,
+    if you know the key the hash map can bring you to it directly.
+
+A hash function is a function that is used to convert a key to a valid index value.

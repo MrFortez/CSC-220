@@ -1,0 +1,24 @@
+Ordered Binary tree:
+Searching: log2n
+Inserting: log2n
+Deleting: log2n
+traversing: n
+
+(Perfect) Hash Table:
+Searching: 1
+Inserting: 1
+Deleting: 1
+Traversing: Not Possible 
+
+Complexity 10 Pts
+Linked List 10 pts
+infix to postfix 15 pts
+binary trees 20 pts
+heaps 20 pts
+converting from general to binary tree 10 pts
+Sorting 20 pts (not heap sort)
+2-3 trees 20 pts
+hash tables 20 pts
+graphs 20 pts
+
+

@@ -1,0 +1,3 @@
+InOrder: Left Child, then parent, then Right Child
+PreOrder: Parent, then Left Child, then Right Child
+Post Order: Left Child, then Right Child, then Parent.
